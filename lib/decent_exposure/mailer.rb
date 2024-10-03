@@ -4,9 +4,8 @@ module DecentExposure
       base.class_eval do
         attr_accessor :params
 
-        def process_action(*args)
-          arg = args.second
-          self.params = arg.stringify_keys if arg && Hash === arg
+        def process_action(*args, **kwargs)
+          self.params = kwargs.stringify_keys
           super
         end
       end
